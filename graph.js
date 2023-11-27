@@ -118,10 +118,6 @@ const mousemove = function(event, d, i) {
   tooltip.text(grp)
 }
 
-const mousemove_dupe = function(event, d, i){
-  tooltip.text("among us ligma")
-}
-
 const mouseleave = function(event, d) {
   tooltip.style("opacity", 0)
   d3.selectAll(".stackedArea").style("opacity", 1).style("stroke", "none")
@@ -178,7 +174,7 @@ const legendMouseover = function(event, d) {
   const selectedGenre = d;
   const selectedPath = svg.selectAll(".stackedArea")
     .filter(d => d.key !== selectedGenre);
-  
+  tooltip.style("opacity", 1)
   selectedPath.style("opacity", 0.2);
 };
 
@@ -186,12 +182,13 @@ const legendMouseover = function(event, d) {
 const legendMousemove = function(event, d, i) {
   grp = d.key
   console.log(d)
-  tooltip.text(grp)
+  tooltip.text(d)
 };
   
 // function for legend mouseleave
 const legendMouseleave = function(event, d) {
   svg.selectAll(".stackedArea").style("opacity", 1);
+  tooltip.style("opacity", 0)
 };
   
 // set legend
