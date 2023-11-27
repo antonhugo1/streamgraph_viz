@@ -8,7 +8,7 @@ const svg = d3.select("#viz_container")
   .append("svg")
     .attr("width", "10%")
     .attr("height", "10%")
-    .attr("viewBox", "0 0 450 350")
+    .attr("viewBox", "0 0 600 600")
     .attr("preserveAspectRatio", "xMinYMin")
   .append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
@@ -61,7 +61,7 @@ const xScale = d3.scaleTime()
 
   svg
   .append('g')
-  .attr("transform", `translate(0, ${height})`)
+  .attr("transform", `translate(0, ${height+30})`)
   .call(d3.axisBottom(xScale).ticks(7).tickSize(0).tickPadding(8))
   .call(d => d.select(".domain").remove());
 
@@ -89,10 +89,13 @@ const GridLine = function() { return d3.axisBottom().scale(xScale)};
 svg
   .append("g")
     .attr("class", "grid")
+    .attr("transform", "translate(0, 30)")
+
   .call(GridLine()
     .tickSize(height,0,0)
     .tickFormat("")
     .ticks(7)
+  
 );
 
 const tooltip = svg
@@ -101,6 +104,8 @@ const tooltip = svg
 .attr("y", 10)
 .style("opacity", 0)
 .style("font-size", 11)
+.attr("transform", "translate(0, 30)")
+
 
 const mouseover = function(event,d) {
   tooltip.style("opacity", 1)
@@ -135,9 +140,11 @@ svg
        .y0(d => yScale(d[0]))
        .y1(d => yScale(d[1]))
     )
+    .attr("transform", "translate(0, 30)")
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave);
+
 
 // set title
 svg
@@ -156,6 +163,8 @@ svg
     .attr("y", -(margin.top/8))
     .attr("text-anchor", "start")
   .text("Number of Occurences")
+  .attr("transform", "translate(0, 30)")
+
 
 // set source
 svg
@@ -165,6 +174,7 @@ svg
     .attr("y", height + margin.bottom*0.7)
     .attr("text-anchor", "start")
   .text("Source: Spotify")
+      .attr("transform", "translate(0, 30)");
 
 
 //set legend
@@ -183,7 +193,7 @@ svg
     .text("Rock")
 svg
     .append("rect")
-        .attr("x", 50)
+        .attr("x", -(margin.left)*0.6 + 50)
         .attr("y", -(margin.top/2))
         .attr("width", 13)
         .attr("height", 13)
@@ -191,61 +201,219 @@ svg
 svg
     .append("text")
         .attr("class", "legend")
-        .attr("x",  70)
+        .attr("x",  -(margin.left)*0.6 + 70)
         .attr("y", -(margin.top/2.4))
     .text("Jazz")
 svg
     .append("rect")
-        .attr("x", 110)
+        .attr("x", -(margin.left)*0.6 + 100)
         .attr("y", -(margin.top/2))
         .attr("width", 13)
         .attr("height", 13)
-        .style("fill", "#00B398")
+        .style("fill", "#8cd17d")
 svg
     .append("text")
         .attr("class", "legend")
-        .attr("x", 130)
+        .attr("x", -(margin.left)*0.6 + 120)
         .attr("y", -(margin.top/2.4))
-    .text("IDPs")
+    .text("Folk")
 svg
     .append("rect")
-        .attr("x", 150)
-        .attr("y", -(margin.top/2.8))
+        .attr("x", -(margin.left)*0.6 + 150)
+        .attr("y", -(margin.top/2))
         .attr("width", 13)
         .attr("height", 13)
-        .style("fill", "#999999")
+        .style("fill", "#ff9d9a")
 svg
     .append("text")
         .attr("class", "legend")
-        .attr("x", -(margin.left)*0.6+20)
-        .attr("y", -(margin.top/3.5))
-    .text("Stateless persons")
+        .attr("x", -(margin.left)*0.6 + 170)
+        .attr("y", -(margin.top/2.4))
+    .text("Pop")
 svg
     .append("rect")
-        .attr("x", -(margin.left)*0.6)
-        .attr("y", -(margin.top/2.8))
+        .attr("x", -(margin.left)*0.6 + 200)
+        .attr("y", -(margin.top/2))
         .attr("width", 13)
         .attr("height", 13)
-        .style("fill", "#E1CC0D")
-        .on("mousemove", mousemove_dupe)
+        .style("fill", "#a0cbe8")
 
 svg
     .append("text")
         .attr("class", "legend")
-        .attr("x", 120)
-        .attr("y", -(margin.top/3.5))
-    .text("Others of concern")
+        .attr("x", -(margin.left)*0.6 + 220)
+        .attr("y", -(margin.top/2.4))
+    .text("Blues")
 svg
     .append("rect")
-        .attr("x", 230)
-        .attr("y", -(margin.top/2.8))
+        .attr("x", -(margin.left)*0.6 + 250)
+        .attr("y", -(margin.top/2))
         .attr("width", 13)
         .attr("height", 13)
-        .style("fill", "#EF4A60")
+        .style("fill", "#f28e2b")
 svg
     .append("text")
         .attr("class", "legend")
-        .attr("x", 250)
-        .attr("y", -(margin.top/3.5))
-    .text("Venezuelans displaced abroad")
+        .attr("x", -(margin.left)*0.6 + 270)
+        .attr("y", -(margin.top/2.4))
+    .text("Country")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 310)
+        .attr("y", -(margin.top/2))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#b6992d")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 330)
+        .attr("y", -(margin.top/2.4))
+    .text("Gospel")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#79706e")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 20)
+        .attr("y", -(margin.top/4))
+    .text("Punk")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 50)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#4e79a7")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 70)
+        .attr("y", -(margin.top/4))
+    .text("Alternative")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 125)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#b07aa1")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 145)
+        .attr("y", -(margin.top/4))
+    .text("Synthwave")
+
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 200)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#e15759")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 220)
+        .attr("y", -(margin.top/4))
+    .text("Metal")
+
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 250)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#86bcb6")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 270)
+        .attr("y", -(margin.top/4))
+    .text("Latin")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 310)
+        .attr("y", -(margin.top/3))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#ffbe7d")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 330)
+        .attr("y", -(margin.top/4))
+    .text("Electronic Dance")
+
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6)
+        .attr("y", -(margin.top/6))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#f1ce63")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 20)
+        .attr("y", -(margin.top/12))
+    .text("Indie")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6)
+        .attr("y", -(margin.top/6))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#f1ce63")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 20)
+        .attr("y", -(margin.top/12))
+    .text("Indie")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 50)
+        .attr("y", -(margin.top/6))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#d37295")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 70)
+        .attr("y", -(margin.top/12))
+    .text("Reggae")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 110)
+        .attr("y", -(margin.top/6))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#bab0ac")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 130)
+        .attr("y", -(margin.top/12))
+    .text("Rap / Hip Hop")
+svg
+    .append("rect")
+        .attr("x", -(margin.left)*0.6 + 200)
+        .attr("y", -(margin.top/6))
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", "#59a14f")
+svg
+    .append("text")
+        .attr("class", "legend")
+        .attr("x", -(margin.left)*0.6 + 220)
+        .attr("y", -(margin.top/12))
+    .text("Emo")
 })
