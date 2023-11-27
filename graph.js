@@ -53,7 +53,7 @@ const stack = d3.stack()
  .value((obj, key) => obj[key])
 
 const stackedData = stack(data)
-
+console.log(stackedData)
 // X scale and Axis
 const xScale = d3.scaleTime()
   .domain(d3.extent(data, d => d.year)).nice()
@@ -113,9 +113,17 @@ const mouseover = function(event, d) {
 
 const mousemove = function(event, d, i) {
   grp = d.key
-  var mouse_x = event.clientX
-  console.log(d)
-  tooltip.text(grp)
+  var genredata = stackedData[typeKeys.indexOf(grp)]; 
+  var numberdata = [];
+  for(let arr = 0; arr < 7; arr++){
+  
+    let number_one = genredata[arr][0];
+    let number_two = genredata[arr][1];
+    let diff = number_two - number_one;
+    numberdata.push(diff);
+  }
+  tooltip.text(grp + " " + numberdata);
+  // tooltip.text(grp)
 }
 
 const mouseleave = function(event, d) {
@@ -174,15 +182,26 @@ const legendMouseover = function(event, d) {
   const selectedGenre = d;
   const selectedPath = svg.selectAll(".stackedArea")
     .filter(d => d.key !== selectedGenre);
+  var genredata = stackedData[typeKeys.indexOf(selectedGenre)]; 
+  var numberdata = [];
+  for(let arr = 0; arr < 7; arr++){
+  
+    let number_one = genredata[arr][0];
+    let number_two = genredata[arr][1];
+    let diff = number_two - number_one;
+    numberdata.push(diff);
+  }
+  tooltip.text(d + " " + numberdata);
+
+  //   tooltip.text(selectedGenre);
   tooltip.style("opacity", 1)
   selectedPath.style("opacity", 0.2);
 };
 
 // function for legend mousemove
 const legendMousemove = function(event, d, i) {
-  grp = d.key
-  console.log(d)
-  tooltip.text(d)
+//   console.log(d)
+//   tooltip.text(d)
 };
   
 // function for legend mouseleave
