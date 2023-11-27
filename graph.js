@@ -147,7 +147,7 @@ svg
     .attr("x", -(margin.left)*0.65)
     .attr("y", -(margin.top)/1.6)
     .attr("text-anchor", "start")
-  .text("Genres from the Decades, 1950-2020")
+  .text("Genres from the Decades, 1950-2010")
 
 // set Y axis label
 svg
