@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-const margin = {top: 60, right: 20, bottom: 0, left: 40};
+const margin = {top: 50, right: 20, bottom: 0, left: 40};
 const width = 450 - margin.left - margin.right;
-const height = 320 - margin.top - margin.bottom;
+const height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3.select("#viz_container")
@@ -145,7 +145,7 @@ svg
   .append("text")
     .attr("class", "chart-title")
     .attr("x", -(margin.left)*0.65)
-    .attr("y", -(margin.top)/1.8)
+    .attr("y", -(margin.top)/1.6)
     .attr("text-anchor", "start")
   .text("Genres from the Decades, 1950-2020")
 
@@ -154,7 +154,7 @@ svg
   .append("text")
     .attr("class", "chart-label")
     .attr("x", -(margin.left)*0.3)
-    .attr("y", -(margin.top)*0.65)
+    .attr("y", -(margin.top)*0.8)
     .attr("text-anchor", "start")
   .text("Number of Occurences")
   .attr("transform", "translate(0, 30)")
@@ -164,10 +164,10 @@ svg
   .append("text")
     .attr("class", "chart-source")
     .attr("x", -(margin.left)*0.3)
-    .attr("y", height + margin.bottom*0.4)
+    .attr("y", height)
     .attr("text-anchor", "start")
   .text("Source: Spotify")
-    .attr("transform", "translate(0, 30)");
+    .attr("transform", "translate(0, 28)");
 
 // function for legend mouseover
 const legendMouseover = function(event, d) {
